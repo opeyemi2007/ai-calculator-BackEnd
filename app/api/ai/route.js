@@ -28,11 +28,12 @@ export async function POST(req) {
     );
 
     const data = await response.json();
+    console.log(JSON.stringify(data, null, 2));
 
     return new Response(
       JSON.stringify({
         answer:
-          data ||
+          data.choices?.[0]?.message?.content ||
           "No response",
       }),
       {
